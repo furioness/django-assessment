@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  database:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  web_server:
+    build:
+      context: .
+      dockerfile: server.Dockerfile
+    ports:
+      - "127.0.0.1:5000:5000"
+    environment:
+      - DJANGO_PRODUCTION=True
+      - PG_NAME=postgres
+      - PG_USER=postgres
+      - PG_PASS=postgres
+      - PG_HOST=database
+      - PG_PORT=5432
+    depends_on:
+      - database
