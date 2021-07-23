@@ -19,3 +19,8 @@ Just run `docker-compose up` and check http://127.0.0.1:5000/
 1) Apply the migrations (to create local db.sqlite3 file) `./manage.py migrate`
 1) Run the developer server `./manage.py runserver` and check http://127.0.0.1:8000/
 
+# Additional notes
+- The recurring job (scheduling) for post upvotes resetting is done via Heroku Scheduler addon that activates every 10 minutes (for effect visibility).
+- Migrations on Heroku made via heroku-cmd as `./manage.py migrate` by hands
+- If `DJANGO_PRODUCTION` isn't defined in environment variables, `DEBUG` sets to `True`, `SECRET_KEY` to a predefined value, database to `db.sqlite3`.
+  

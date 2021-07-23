@@ -12,10 +12,6 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Comment
         fields = ("id", "author_name", "content", "creation_date", "post")
-        # fields = ('__all__')
-        # extra_kwargs = {
-        #     'post': {'lookup_field': 'id'}
-        # }
 
     def create(self, validated_data):
         comment = Comment.objects.create(
@@ -25,7 +21,7 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
         return comment
 
     def update(self, instance: Comment, validated_data):
-        """The method must to be overridden as I'm probably doing something stupid with all that
+        """The method have to be overridden as I'm probably doing something stupid with all that
         `PrimaryKeyRelatedField` fields stuff...
         """
         if "post" in validated_data:
@@ -52,4 +48,3 @@ class PostSerializer(serializers.ModelSerializer):
             "upvotes",
             "comments",
         )
-        # fields = ('__all__')

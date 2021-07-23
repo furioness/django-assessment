@@ -9,6 +9,8 @@ from .models import Post, Comment
 
 
 class PostViewSet(viewsets.ModelViewSet):
+    """News posts
+    """
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
@@ -16,6 +18,8 @@ class PostViewSet(viewsets.ModelViewSet):
     # https://github.com/encode/django-rest-framework/issues/7468
     @action(methods=["post"], detail=True)
     def upvote(self, request, pk):
+        """Vote up for a specific news
+        """
         post = get_object_or_404(Post, id=pk)
 
         post.upvotes = F("upvotes") + 1  # for atomicity
@@ -26,5 +30,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
 
 class CommentViewSet(viewsets.ModelViewSet):
+    """Comments for the news posts
+    """
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer

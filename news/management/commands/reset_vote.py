@@ -8,5 +8,5 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         Post.objects.update(upvotes=0)
         self.stdout.write("Vote resetting is done.")
-        return  # recommended by a link...
+        return  # recommended by this link...
         # https://devcenter.heroku.com/articles/scheduling-custom-django-management-commands
