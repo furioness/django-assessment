@@ -23,9 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = 'DJANGO_PRODUCTION' not in environ
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = environ['SECRET_KEY'] if DEBUG else \
-    'django-insecure-95lk@%dkz31ylq0xkiwus6a#1tzsyi9%hv)!fac)ou' \
-    '+l@&!%bg'
+SECRET_KEY = 'django-insecure-95lk@%dkz31ylq0xkiwu' \
+             's6a#1tzsyi9%hv)!fac)ou+l@&!%bg' if DEBUG else environ['SECRET_KEY']
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'floating-retreat-00950.herokuapp.com']
 
