@@ -3,14 +3,14 @@ from rest_framework import routers
 
 from . import views
 
-app_name = 'news'
+app_name = "news"
 
 router = routers.DefaultRouter()
-router.register('comments', views.CommentViewSet)
-router.register('posts', views.PostViewSet)
+router.register("comments", views.CommentViewSet)
+router.register("posts", views.PostViewSet)
 
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path("", include(router.urls)),
+    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
 ]

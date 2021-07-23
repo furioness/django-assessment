@@ -1,0 +1,10 @@
+[flake8]
+exclude = env/,
+        staticfiles/,
+        *.migrations/,
+        .*/
+# ignore = E501
+max-line-length = 99
+per-file-ignores = news/tests.py: F401,
+        news/admin.py: F401
+max-complexity = 10

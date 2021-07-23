@@ -8,29 +8,51 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Post',
+            name="Post",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('creation_date', models.DateTimeField(auto_created=True)),
-                ('title', models.TextField()),
-                ('link', models.URLField()),
-                ('author_name', models.TextField()),
-                ('upvotes', models.IntegerField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("creation_date", models.DateTimeField(auto_created=True)),
+                ("title", models.TextField()),
+                ("link", models.URLField()),
+                ("author_name", models.TextField()),
+                ("upvotes", models.IntegerField()),
             ],
         ),
         migrations.CreateModel(
-            name='Comment',
+            name="Comment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('creation_date', models.DateTimeField(auto_created=True)),
-                ('author_name', models.TextField()),
-                ('content', models.TextField()),
-                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to='news.post')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("creation_date", models.DateTimeField(auto_created=True)),
+                ("author_name", models.TextField()),
+                ("content", models.TextField()),
+                (
+                    "post",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="comments",
+                        to="news.post",
+                    ),
+                ),
             ],
         ),
     ]

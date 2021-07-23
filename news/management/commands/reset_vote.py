@@ -3,7 +3,7 @@ from news.models import Post
 
 
 class Command(BaseCommand):
-    help = 'Reset votes on all news'
+    help = "Reset votes on all news"
 
     def handle(self, *args, **options):
         Post.objects.update(upvotes=0)
