@@ -1,4 +1,5 @@
-from rest_framework import viewsets, views
+from django.db.models import F
+from rest_framework import viewsets
 from rest_framework.generics import get_object_or_404
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -15,8 +16,11 @@ class PostViewSet(viewsets.ModelViewSet):
     @action(methods=['post'], detail=True)
     def upvote(self, request, pk):
         post = get_object_or_404(Post, id=pk)
-        post.upvotes += 1
-        post.save()
+
+        post.upvotes = F('upvotes') + 1  # for atomicity
+        post.save(update_fields=['upvotes'])
+        post.refresh_from_db()
+
         return Response(PostSerializer(post).data)
 
 
