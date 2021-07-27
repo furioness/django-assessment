@@ -9,4 +9,8 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+# Code checks
+# RUN black --check --extend-exclude "migrations|staticfiles" .
+# RUN flake8
+
 ENTRYPOINT ["bash", "entrypoint.sh"]
