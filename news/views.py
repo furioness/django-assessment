@@ -4,13 +4,13 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .serializers import PostSerializer, CommentSerializer
+from .serializers import PostSerializer, CommentSerializer, CommentSerializerForCreation
 from .models import Post, Comment
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    """News posts
-    """
+    """News posts"""
+
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
@@ -18,8 +18,7 @@ class PostViewSet(viewsets.ModelViewSet):
     # https://github.com/encode/django-rest-framework/issues/7468
     @action(methods=["post"], detail=True)
     def upvote(self, request, pk):
-        """Vote up for a specific news
-        """
+        """Vote up for a specific news"""
         post = get_object_or_404(Post, id=pk)
 
         post.upvotes = F("upvotes") + 1  # for atomicity
@@ -30,7 +29,14 @@ class PostViewSet(viewsets.ModelViewSet):
 
 
 class CommentViewSet(viewsets.ModelViewSet):
-    """Comments for the news posts
-    """
+    """Comments for the news posts"""
+
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+
+    def get_serializer_class(self):
+        """Overloaded method, so `post_id` can be set only during creation"""
+        if self.request.method == "POST":
+            return CommentSerializerForCreation
+
+        return super().get_serializer_class()

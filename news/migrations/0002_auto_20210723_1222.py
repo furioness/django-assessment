@@ -6,23 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('news', '0001_initial'),
+        ("news", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='comment',
-            name='creation_date',
+            model_name="comment",
+            name="creation_date",
             field=models.DateTimeField(auto_now_add=True),
         ),
         migrations.AlterField(
-            model_name='post',
-            name='creation_date',
+            model_name="post",
+            name="creation_date",
             field=models.DateTimeField(auto_now_add=True),
         ),
         migrations.AlterField(
-            model_name='post',
-            name='upvotes',
+            model_name="post",
+            name="upvotes",
             field=models.IntegerField(default=0),
         ),
     ]
